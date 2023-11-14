@@ -2,7 +2,7 @@
 layout: home
 search_exclude: true
 ---
-A modified blog for CSA Based on Fastpages- Tirth Thakkar & Haseeb Beg   
+Welcome to the Binary Calculator! This calculator can be used to perform various calculations in binary, making it easy to visualize binary logic!
 
 
 
