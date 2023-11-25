@@ -74,7 +74,7 @@ courses: { compsci: {week: 0} }
 
   <script>
     function validateInput(input) {
-      input.value = input.value.replace(/[^01]/g, ''); // Remove non-binary characters
+      input.value = input.value.replace(/[^01]/g, '');
     }
 
     function calculate(operator) {
@@ -118,7 +118,6 @@ courses: { compsci: {week: 0} }
       document.getElementById('result').textContent = 'Result: ' + result + ' (Decimal: ' + resultDecimal + ')';
       document.getElementById('decimalValues').textContent = 'Decimal Values: ' + decimal1 + ', ' + decimal2 + ', ' + resultDecimal;
 
-      // Calculate RGB color based on decimal values and result
       const red = decimalToBinary(decimal1 % 256);
       const green = decimalToBinary(decimal2 % 256);
       const blue = decimalToBinary(resultDecimal % 256);
