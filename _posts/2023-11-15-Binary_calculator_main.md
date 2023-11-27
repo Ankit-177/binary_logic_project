@@ -86,6 +86,7 @@ courses: { compsci: {week: 0} }
         return;
       }
 
+      // BREAK HERE AND REDIRECT TO LOGIC PYTHON FILE
       const decimal1 = binaryToDecimal(binaryInput1);
       const decimal2 = binaryToDecimal(binaryInput2);
 
