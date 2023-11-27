@@ -2,102 +2,72 @@
 toc: true
 comments: false
 layout: post
-title: Binary Calculator
-description: This the the binary calculator.
+title: Binary calculator with more visual appealing
+description: binary calculatore revised ver. 
 type: plans
 courses: { compsci: {week: 0} }
 ---
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Calculator</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       margin: 20px;
+      background-color: #f5f5f5; /* Set a light background color */
     }
+
     input {
       width: 150px;
       padding: 10px;
       margin: 10px;
       text-align: right;
     }
+
     button {
-      padding: 0.6em 2em;
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      font-size: 18px;
       border: none;
-      outline: none;
-      color: rgb(255, 255, 255);
-      background: #111;
+      border-radius: 10px; /* Add border-radius for a rounded look */
+      background-color: #4caf50; /* Green color for the buttons */
+      color: #fff; /* White text color */
       cursor: pointer;
-      position: relative;
-      z-index: 0;
-      border-radius: 10px;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Add smooth transitions */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
     }
-    .button:before {
-      content: "";
-      background: linear-gradient(
-        45deg,
-        #ff0000,
-        #ff7300,
-        #fffb00,
-        #48ff00,
-        #00ffd5,
-        #002bff,
-        #7a00ff,
-        #ff00c8,
-        #ff0000
-      );
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      background-size: 400%;
-      z-index: -1;
-      filter: blur(5px);
-      -webkit-filter: blur(5px);
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      animation: glowing-button 20s linear infinite;
-      transition: opacity 0.3s ease-in-out;
-      border-radius: 10px;
+
+    button:hover {
+      background-color: #45a049; /* Darker green color on hover */
+      transform: scale(1.05); /* Scale up on hover */
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
     }
-    @keyframes glowing-button {
-      0% {
-        background-position: 0 0;
-      }
-      50% {
-        background-position: 400% 0;
-      }
-      100% {
-        background-position: 0 0;
-      }
-    }
-    .button:after {
-      z-index: -1;
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #222;
-      left: 0;
-      top: 0;
-      border-radius: 10px;
-    }
+
     #result {
       font-size: 24px;
       margin-top: 10px;
     }
+
     #decimalValues {
       margin-top: 10px;
     }
+
     #colorBox {
       width: 100px;
       height: 100px;
       margin: 20px auto;
       border: 2px solid #000;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #ffffff;
     }
 
     /* Animation for reset button */
@@ -121,20 +91,17 @@ courses: { compsci: {week: 0} }
 </head>
 <body>
 
-  <input type="text" id="decimalInput1" placeholder="Decimal Number 1" oninput="validateDecimalInput(this)">
-  <input type="text" id="decimalInput2" placeholder="Decimal Number 2" oninput="validateDecimalInput(this)">
-
-  <br>
+  <h2>Binary Calculator</h2>
 
   <input type="text" id="binaryInput1" placeholder="Binary Number 1" oninput="validateInput(this)">
   <input type="text" id="binaryInput2" placeholder="Binary Number 2" oninput="validateInput(this)">
 
   <br>
 
-  <button onclick="calculate('+')">+</button>
-  <button onclick="calculate('-')">-</button>
-  <button onclick="calculate('*')">*</button>
-  <button onclick="calculate('/')">/</button>
+  <button onclick="calculate('+'); playClickSound()">+</button>
+  <button onclick="calculate('-'); playClickSound()">-</button>
+  <button onclick="calculate('*'); playClickSound()">*</button>
+  <button onclick="calculate('/'); playClickSound()">/</button>
 
   <br>
 
@@ -143,48 +110,23 @@ courses: { compsci: {week: 0} }
   <div id="decimalValues">Decimal Values: </div>
 
   <div id="colorBox"></div>
-  
-  <!-- Animation for reset button -->
-  <script>
-    function resetAnimation() {
-      const resetButton = document.querySelector('.reset-button');
-      resetButton.classList.remove('reset-button');
-      void resetButton.offsetWidth; // Trigger reflow
-      resetButton.classList.add('reset-button');
-    }
-  </script>
 
   <!-- Dark Mode Toggle Button -->
   <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
   <!-- Reset Button -->
-  <button onclick="resetCalculator(); resetAnimation();" class="reset-button">Reset</button>
+  <button onclick="resetCalculator()" class="reset-button">Reset</button>
 
   <script>
     function validateInput(input) {
       input.value = input.value.replace(/[^01]/g, '');
     }
 
-    function validateDecimalInput(input) {
-      input.value = input.value.replace(/[^\d]/g, '');
-    }
-
     function calculate(operator) {
-      const decimalInput1 = document.getElementById('decimalInput1').value;
-      const decimalInput2 = document.getElementById('decimalInput2').value;
       const binaryInput1 = document.getElementById('binaryInput1').value;
       const binaryInput2 = document.getElementById('binaryInput2').value;
 
-      if (decimalInput1 !== '' && decimalInput2 !== '') {
-        // Convert decimal inputs to binary
-        document.getElementById('binaryInput1').value = decimalToBinary(decimalInput1);
-        document.getElementById('binaryInput2').value = decimalToBinary(decimalInput2);
-      }
-
-      const binaryInput1Value = document.getElementById('binaryInput1').value;
-      const binaryInput2Value = document.getElementById('binaryInput2').value;
-
-      if (!isValidBinary(binaryInput1Value) || !isValidBinary(binaryInput2Value)) {
+      if (!isValidBinary(binaryInput1) || !isValidBinary(binaryInput2)) {
         alert('Please enter valid binary numbers.');
         return;
       }
@@ -228,6 +170,20 @@ courses: { compsci: {week: 0} }
       const rgbColor = `rgb(${binaryToDecimal(red)}, ${binaryToDecimal(green)}, ${binaryToDecimal(blue)})`;
 
       document.getElementById('colorBox').style.backgroundColor = rgbColor;
+
+      // Play sound for calculation completion
+      playCalculationSound();
+    }
+
+    function resetCalculator() {
+      document.getElementById('binaryInput1').value = '';
+      document.getElementById('binaryInput2').value = '';
+      document.getElementById('result').textContent = 'Result: ';
+      document.getElementById('decimalValues').textContent = 'Decimal Values: ';
+      document.getElementById('colorBox').style.backgroundColor = ''; // Reset color box
+
+      // Play sound for reset
+      playResetSound();
     }
 
     function isValidBinary(value) {
@@ -242,8 +198,32 @@ courses: { compsci: {week: 0} }
     function decimalToBinary(decimal) {
       return (decimal >>> 0).toString(2);
     }
+
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+    }
+
+    function playClickSound() {
+      // Load and play the sound for button clicks
+      const clickSound = new Audio('path-to-click-sound.mp3'); // Replace with the actual path
+      clickSound.play();
+    }
+
+    function playCalculationSound() {
+      // Load and play the sound for calculation completion
+      const calculationSound = new Audio('path-to-calculation-sound.mp3'); // Replace with the actual path
+      calculationSound.play();
+    }
+
+    function playResetSound() {
+      // Load and play the sound for reset
+      const resetSound = new Audio('path-to-reset-sound.mp3'); // Replace with the actual path
+      resetSound.play();
+    }
+
   </script>
 
 </body>
-
+</html>
 
