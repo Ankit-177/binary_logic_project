@@ -99,7 +99,6 @@ courses: { compsci: {week: 0} }
       margin: 20px auto;
       border: 2px solid #000;
     }
-
     /* Animation for reset button */
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% {
@@ -112,11 +111,9 @@ courses: { compsci: {week: 0} }
         transform: translateY(-10px);
       }
     }
-
     .reset-button {
       animation: bounce 1s ease;
     }
-
   </style>
 </head>
 <body>
