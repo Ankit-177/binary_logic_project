@@ -90,21 +90,8 @@ courses: { compsci: {week: 0} }
 
   <div id="colorBox"></div>
   
-  <!-- Animation for reset button -->
-  <script>
-    function resetAnimation() {
-      const resetButton = document.querySelector('.reset-button');
-      resetButton.classList.remove('reset-button');
-      void resetButton.offsetWidth; // Trigger reflow
-      resetButton.classList.add('reset-button');
-    }
   </script>
 
-  <!-- Dark Mode Toggle Button -->
-  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-
-  <!-- Reset Button -->
-  <button onclick="resetCalculator(); resetAnimation();" class="reset-button">Reset</button>
 
   <script>
     function validateInput(input) {
