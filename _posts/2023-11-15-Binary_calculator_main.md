@@ -48,6 +48,24 @@ courses: { compsci: {week: 0} }
       margin: 20px auto;
       border: 2px solid #000;
     }
+
+    /* Animation for reset button */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-15px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .reset-button {
+      animation: bounce 1s ease;
+    }
+
   </style>
 </head>
 <body>
@@ -71,6 +89,22 @@ courses: { compsci: {week: 0} }
   <div id="decimalValues">Decimal Values: </div>
 
   <div id="colorBox"></div>
+  
+  <!-- Animation for reset button -->
+  <script>
+    function resetAnimation() {
+      const resetButton = document.querySelector('.reset-button');
+      resetButton.classList.remove('reset-button');
+      void resetButton.offsetWidth; // Trigger reflow
+      resetButton.classList.add('reset-button');
+    }
+  </script>
+
+  <!-- Dark Mode Toggle Button -->
+  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+  <!-- Reset Button -->
+  <button onclick="resetCalculator(); resetAnimation();" class="reset-button">Reset</button>
 
   <script>
     function validateInput(input) {
