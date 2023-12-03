@@ -48,24 +48,6 @@ courses: { compsci: {week: 0} }
       margin: 20px auto;
       border: 2px solid #000;
     }
-
-    /* Animation for reset button */
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-15px);
-      }
-      60% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .reset-button {
-      animation: bounce 1s ease;
-    }
-
   </style>
 </head>
 <body>
@@ -89,9 +71,6 @@ courses: { compsci: {week: 0} }
   <div id="decimalValues">Decimal Values: </div>
 
   <div id="colorBox"></div>
-  
-  </script>
-
 
   <script>
     function validateInput(input) {
@@ -163,6 +142,3 @@ courses: { compsci: {week: 0} }
   </script>
 
 </body>
-
-
-# tes1111
