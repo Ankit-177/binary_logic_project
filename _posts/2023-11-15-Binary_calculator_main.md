@@ -24,93 +24,29 @@ courses: { compsci: {week: 0} }
       text-align: right;
     }
     button {
-      padding: 0.6em 0em;
-      border: none;
-      outline: none;
-      color: rgb(255, 255, 255);
-      background: #111;
-      cursor: pointer;
-      position: relative;
-      z-index: 0;
-      border-radius: 10px;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
+  padding: 0.6em 0em;
+  border: 2px solid rgb(255, 0, 0); /* Initial RGB border (Red) */
+  animation: breathing-border 3s infinite alternate;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+  @keyframes breathing-border {
+    0% {
+      border-color: rgb(255, 0, 0); /* Red */
     }
-    .button:before {
-      content: "";
-      background: linear-gradient(
-        45deg,
-        #ff0000,
-        #ff7300,
-        #fffb00,
-        #48ff00,
-        #00ffd5,
-        #002bff,
-        #7a00ff,
-        #ff00c8,
-        #ff0000
-      );
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      background-size: 400%;
-      z-index: -1;
-      filter: blur(5px);
-      -webkit-filter: blur(5px);
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      animation: glowing-button 20s linear infinite;
-      transition: opacity 0.3s ease-in-out;
-      border-radius: 10px;
+    50% {
+      border-color: rgb(0, 255, 0); /* Green */
     }
-    @keyframes glowing-button {
-      0% {
-        background-position: 0 0;
-      }
-      50% {
-        background-position: 400% 0;
-      }
-      100% {
-        background-position: 0 0;
-      }
+    100% {
+      border-color: rgb(0, 0, 255); /* Blue */
     }
-    .button:after {
-      z-index: -1;
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #222;
-      left: 0;
-      top: 0;
-      border-radius: 10px;
-    }
-    #result {
-      font-size: 24px;
-      margin-top: 10px;
-    }
-    #decimalValues {
-      margin-top: 10px;
-    }
-    #colorBox {
-      width: 100px;
-      height: 100px;
-      margin: 20px auto;
-      border: 2px solid #000;
-    }
-    /* Animation for reset button */
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-15px);
-      }
-      60% {
-        transform: translateY(-10px);
-      }
-    }
+  }
     .reset-button {
       animation: bounce 1s ease;
     }
