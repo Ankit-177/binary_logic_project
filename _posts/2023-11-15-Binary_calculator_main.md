@@ -24,7 +24,7 @@ courses: { compsci: {week: 0} }
       text-align: right;
     }
     button {
-      padding: 0.6em 2em;
+      padding: 0.6em 0em;
       border: none;
       outline: none;
       color: rgb(255, 255, 255);
@@ -152,7 +152,7 @@ courses: { compsci: {week: 0} }
   </script>
 
   <!-- Dark Mode Toggle Button -->
-  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <button onclick="toggleDarkMode()">Dark Mode</button>
 
   <!-- Reset Button -->
   <button onclick="resetCalculator(); resetAnimation();" class="reset-button">Reset</button>
@@ -173,7 +173,6 @@ courses: { compsci: {week: 0} }
       const binaryInput2 = document.getElementById('binaryInput2').value;
 
       if (decimalInput1 !== '' && decimalInput2 !== '') {
-        // Convert decimal inputs to binary
         document.getElementById('binaryInput1').value = decimalToBinary(decimalInput1);
         document.getElementById('binaryInput2').value = decimalToBinary(decimalInput2);
       }
