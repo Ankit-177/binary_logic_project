@@ -8,6 +8,8 @@ type: plans
 courses: { compsci: {week: 0} }
 ---
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,6 +116,16 @@ courses: { compsci: {week: 0} }
     .reset-button {
       animation: bounce 1s ease;
     }
+    /* Dark mode styles */
+    .dark-mode body {
+      background-color: #222;
+      color: #fff;
+    }
+    .dark-mode input,
+    .dark-mode button {
+      background-color: #333;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -123,8 +135,8 @@ courses: { compsci: {week: 0} }
 
   <br>
 
-  <input type="text" id="binaryInput1" placeholder="Binary Number 1" oninput="validateInput(this)">
-  <input type="text" id="binaryInput2" placeholder="Binary Number 2" oninput="validateInput(this)">
+  <input type="text" id="binaryInput1" placeholder="Binary Number 1" oninput="validateBinaryInput(this)">
+  <input type="text" id="binaryInput2" placeholder="Binary Number 2" oninput="validateBinaryInput(this)">
 
   <br>
 
@@ -136,11 +148,9 @@ courses: { compsci: {week: 0} }
   <br>
 
   <div id="result">Result: </div>
-
   <div id="decimalValues">Decimal Values: </div>
-
   <div id="colorBox"></div>
-  
+
   <!-- Animation for reset button -->
   <script>
     function resetAnimation() {
@@ -152,18 +162,22 @@ courses: { compsci: {week: 0} }
   </script>
 
   <!-- Dark Mode Toggle Button -->
-  <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <button onclick="toggleDarkMode()" id="darkModeToggle" class="button">T</button>
 
   <!-- Reset Button -->
   <button onclick="resetCalculator(); resetAnimation();" class="reset-button">Reset</button>
 
   <script>
-    function validateInput(input) {
+    function validateDecimalInput(input) {
+      input.value = input.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1');
+    }
+
+    function validateBinaryInput(input) {
       input.value = input.value.replace(/[^01]/g, '');
     }
 
-    function validateDecimalInput(input) {
-      input.value = input.value.replace(/[^\d]/g, '');
+    function validateInput(input) {
+      input.value = input.value.replace(/[^01.]/g, '').replace(/(\..*)\./g, '$1');
     }
 
     function calculate(operator) {
@@ -173,7 +187,6 @@ courses: { compsci: {week: 0} }
       const binaryInput2 = document.getElementById('binaryInput2').value;
 
       if (decimalInput1 !== '' && decimalInput2 !== '') {
-        // Convert decimal inputs to binary
         document.getElementById('binaryInput1').value = decimalToBinary(decimalInput1);
         document.getElementById('binaryInput2').value = decimalToBinary(decimalInput2);
       }
@@ -186,7 +199,6 @@ courses: { compsci: {week: 0} }
         return;
       }
 
-      // BREAK HERE AND REDIRECT TO LOGIC PYTHON FILE
       const decimal1 = binaryToDecimal(binaryInput1);
       const decimal2 = binaryToDecimal(binaryInput2);
 
@@ -239,9 +251,25 @@ courses: { compsci: {week: 0} }
     function decimalToBinary(decimal) {
       return (decimal >>> 0).toString(2);
     }
+
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      const isDarkMode = body.classList.contains('dark-mode');
+      darkModeToggle.style.backgroundColor = isDarkMode ? '#008000' : '#111';
+    }
+
+    function resetCalculator() {
+      document.getElementById('decimalInput1').value = '';
+      document.getElementById('decimalInput2').value = '';
+      document.getElementById('binaryInput1').value = '';
+      document.getElementById('binaryInput2').value = '';
+      document.getElementById('result').textContent = 'Result: ';
+      document.getElementById('decimalValues').textContent = 'Decimal Values: ';
+      document.getElementById('colorBox').style.backgroundColor = '';
+    }
   </script>
 
 </body>
-
-
-
+</html>
