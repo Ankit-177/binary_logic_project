@@ -270,4 +270,3 @@ courses: { compsci: {week: 0} }
   </script>
 
 </body>
-</html>
