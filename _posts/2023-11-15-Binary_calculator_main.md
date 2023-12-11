@@ -136,6 +136,8 @@ courses: { compsci: {week: 0} }
       const decimal1 = binaryToDecimal(binaryInput1);
       const decimal2 = binaryToDecimal(binaryInput2);
 
+      // BREAK HERE TO PYTHON FILE
+
       let result;
       switch (operator) {
         case '+':
